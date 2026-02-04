@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <main>
+      <main className="pt-20 motion-safe:animate-in motion-safe:fade-in duration-700">
         <HeroSection />
         <AboutSection />
         <ExperienceSection />

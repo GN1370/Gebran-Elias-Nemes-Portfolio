@@ -1,63 +1,36 @@
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Award } from "lucide-react"
-
-interface Certification {
-  title: string
-  issuer: string
-  date: string
-  credentialId?: string
-}
-
-const certifications: Certification[] = [
-  {
-    title: "Introduction to Front-End Development",
-    issuer: "Meta (Coursera)",
-    date: "2025",
-  },
-  {
-    title: "Version Control",
-    issuer: "Meta (Coursera)",
-    date: "2025",
-  },
-  {
-    title: "Programming with JavaScript",
-    issuer: "Meta (Coursera)",
-    date: "2025",
-  },
-  {
-    title: "Lebanese Civil Defence Certificate",
-    issuer: "Lebanese Civil Defence",
-    date: "2023",
-  },
-]
+import { SectionHeading } from "@/components/section-heading"
+import { portfolioData } from "@/lib/data/portfolio"
+import { ExternalLink } from "lucide-react"
 
 export function CertificationsSection() {
+  const { certifications } = portfolioData
+
   return (
     <section id="certifications" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-balance">Certifications</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {certifications.map((cert, index) => (
-            <Card key={index} className="p-6 hover:border-accent transition-colors">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Award className="h-6 w-6 text-accent" />
-                  </div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold text-balance mb-1">{cert.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">{cert.issuer}</p>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="secondary" className="text-xs">
-                      {cert.date}
-                    </Badge>
-                    {cert.credentialId && (
-                      <span className="text-xs text-muted-foreground">ID: {cert.credentialId}</span>
-                    )}
-                  </div>
-                </div>
+      <div className="max-w-6xl mx-auto space-y-12">
+        <SectionHeading
+          eyebrow="Certifications"
+          title="Continuous learning with industry-recognized credentials."
+          description="Credentials spanning front-end engineering, React mastery, and AI foundations."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {certifications.map((cert) => (
+            <Card key={`${cert.title}-${cert.issuer}`} className="p-6">
+              <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">{cert.issuer}</p>
+              <div className="mt-3 flex items-start justify-between gap-3">
+                <h3 className="text-base font-semibold text-balance">{cert.title}</h3>
+                {cert.url ? (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-accent inline-flex items-center gap-1"
+                  >
+                    Verify
+                    <ExternalLink className="h-3 w-3" />
+                  </a>
+                ) : null}
               </div>
             </Card>
           ))}

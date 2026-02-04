@@ -1,137 +1,84 @@
-import { Card } from "@/components/ui/card"
+"use client"
+
+import { useMemo, useState } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
-
-interface Project {
-  title: string
-  description: string
-  technologies: string[]
-  features: string[]
-  status?: string
-  github?: string
-  demo?: string
-}
-
-const projects: Project[] = [
-  {
-    title: "AI-Recruitment System",
-    description:
-      "A web-based recruitment platform developed during the MoonDev by Questa Internship that enables recruiters to efficiently search for candidates with specific skills and experiences.",
-    technologies: ["Next.js", "TypeScript", "HTML", "CSS", "Tailwind CSS", "Supabase", "Generative AI Tools"],
-    features: [
-      "Intelligent filtering to help recruiters quickly find the right candidates",
-      "Responsive and intuitive interface designed with Next.js and Tailwind CSS",
-      "Fast and secure data retrieval using Supabase database",
-      "Reduced time spent reviewing resumes through AI-powered features",
-    ],
-  },
-  {
-    title: "Motivaily",
-    description:
-      "Todo list platform with AI-generated challenges and team management features to help users stay motivated and productive.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Generative AI Tools"],
-    features: [
-      "Responsive user-friendly interface optimized for user experience",
-      "AI-generated personalized challenges tailored to user's goals and habits",
-      "Team management features for collaborative productivity",
-      "Progress tracking and motivation system",
-    ],
-    status: "Under Development",
-  },
-  {
-    title: "Blade-Quest",
-    description:
-      "A 2D pixel-based web game where players take on the role of a knight fighting monsters by attacking or dodging.",
-    technologies: ["React.js", "JavaScript", "HTML", "CSS", "MongoDB"],
-    features: [
-      "Responsive, user-friendly interface for outside gameplay interactions",
-      "Custom pixel art and game assets for immersive gameplay experience",
-      "MongoDB database integration to track player progress",
-      "Real-time combat mechanics with attack and dodge systems",
-    ],
-    status: "Under Development",
-  },
-  {
-    title: "MAG Marketplace",
-    description:
-      "An online marketplace platform enabling users to list items for sale and reserve them to contact the seller.",
-    technologies: ["React.js", "JavaScript", "PHP", "MySQL", "Tailwind CSS"],
-    features: [
-      "Responsive, user-friendly interface for seamless browsing",
-      "Product listing and reservation system",
-      "MySQL relational database for managing product listings and user data",
-      "Admin capabilities for product edits and modifications",
-    ],
-  },
-  {
-    title: "Better Mental State",
-    description:
-      "A front-end website to assist users in improving their mental state with features aimed at improving emotional well-being.",
-    technologies: ["HTML", "CSS", "JavaScript"],
-    features: [
-      "Intuitive responsive user-friendly interface",
-      "Stress-relief techniques and motivational content",
-      "Accessible features for improving emotional well-being at any time",
-      "Pure front-end implementation with vanilla JavaScript",
-    ],
-  },
-]
+import { Card } from "@/components/ui/card"
+import { SectionHeading } from "@/components/section-heading"
+import { portfolioData } from "@/lib/data/portfolio"
+import { ExternalLink } from "lucide-react"
 
 export function ProjectsSection() {
+  const { projects } = portfolioData
+  const [activeTag, setActiveTag] = useState<string>("All")
+
+  const tags = useMemo(() => {
+    const set = new Set<string>()
+    projects.forEach((project) => project.tags.forEach((tag) => set.add(tag)))
+    return ["All", ...Array.from(set)]
+  }, [projects])
+
+  const filteredProjects = useMemo(() => {
+    if (activeTag === "All") return projects
+    return projects.filter((project) => project.tags.includes(activeTag))
+  }, [activeTag, projects])
+
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-balance">Featured Projects</h2>
+      <div className="max-w-6xl mx-auto space-y-12">
+        <SectionHeading
+          eyebrow="Projects"
+          title="Selected work with measurable impact and polished UX."
+          description="A focused set of projects spanning AI-enabled recruitment, productivity, and consumer web products."
+        />
+        <div className="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <Button
+              key={tag}
+              type="button"
+              variant={activeTag === tag ? "default" : "outline"}
+              size="sm"
+              className={activeTag === tag ? "bg-foreground text-background" : "bg-transparent"}
+              onClick={() => setActiveTag(tag)}
+            >
+              {tag}
+            </Button>
+          ))}
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <Card key={index} className="p-6 flex flex-col hover:border-accent transition-colors">
-              <div className="flex-1 space-y-4">
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-xl font-bold text-balance">{project.title}</h3>
-                  {project.status && (
-                    <Badge variant="outline" className="text-xs whitespace-nowrap">
-                      {project.status}
-                    </Badge>
-                  )}
+          {filteredProjects.map((project) => (
+            <Card key={project.name} className="p-6 flex flex-col gap-4">
+              <div className="space-y-3">
+                <div>
+                  <h3 className="text-xl font-semibold text-balance">{project.name}</h3>
+                  <p className="text-sm text-muted-foreground mt-2 text-pretty">{project.description}</p>
                 </div>
-                <p className="text-muted-foreground text-pretty leading-relaxed">{project.description}</p>
-                <ul className="space-y-1">
-                  {project.features.map((feature, i) => (
-                    <li key={i} className="text-sm text-muted-foreground flex gap-2">
-                      <span className="text-accent mt-1">▹</span>
-                      <span>{feature}</span>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  {project.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                      <span className="text-pretty">{highlight}</span>
                     </li>
                   ))}
                 </ul>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => (
-                    <Badge key={tech} variant="secondary" className="text-xs">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
               </div>
-              {(project.github || project.demo) && (
-                <div className="flex gap-3 pt-4">
-                  {project.github && (
-                    <Button asChild variant="outline" size="sm">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </a>
-                    </Button>
-                  )}
-                  {project.demo && (
-                    <Button asChild size="sm">
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4 mr-2" />
-                        Live Demo
-                      </a>
-                    </Button>
-                  )}
+              <div className="mt-auto flex flex-wrap gap-2">
+                {project.stack.map((tech) => (
+                  <Badge key={tech} variant="secondary" className="text-xs">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+              {project.demoUrl ? (
+                <div className="pt-2">
+                  <Button asChild variant="outline" size="sm">
+                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                      Live Demo
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </a>
+                  </Button>
                 </div>
-              )}
+              ) : null}
             </Card>
           ))}
         </div>

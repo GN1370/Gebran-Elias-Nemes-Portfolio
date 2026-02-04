@@ -1,89 +1,54 @@
+﻿import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-
-interface Experience {
-  title: string
-  company: string
-  location: string
-  period: string
-  description: string[]
-  technologies: string[]
-}
-
-const experiences: Experience[] = [
-  {
-    title: "Front-end Web Development Trainee (Angular)",
-    company: "ITXI",
-    location: "On-site",
-    period: "March 2025 - July 2025",
-    description: [
-      "Undergoing hands-on training focused on modern front-end development using Angular and TypeScript",
-      "Working with tools and platforms including Playwright for testing, Jira for project management, Firebase for backend services, and Figma for UI/UX design",
-      "Strengthening practical skills and industry knowledge to support long-term growth in web development",
-    ],
-    technologies: ["Angular", "TypeScript", "Playwright", "Jira", "Firebase", "Figma"],
-  },
-  {
-    title: "Full-Stack Development Intern",
-    company: "MoonDev by Questa",
-    location: "Remote",
-    period: "February 2024 - May 2024",
-    description: [
-      "Contributed to developing a Next.js-based AI recruitment system to optimise candidate search for recruiters",
-      "Utilised technologies like TypeScript, Supabase, Tailwind CSS and AI Generative Tools to implement features, ensuring a responsive and scalable application",
-      "Enhanced problem-solving, teamwork, and attention to detail through a real-world project",
-    ],
-    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "AI Tools"],
-  },
-  {
-    title: "Private Tutor",
-    company: "Self-employed",
-    location: "Lebanon",
-    period: "2014 - Present",
-    description: [
-      "Provided private tutoring to students from elementary to high school across multiple subjects (Arabic, French, and English)",
-      "Focused on improving student performance by developing tailored lesson plans based on individual learning needs",
-      "Developed strong communication, patience, and adaptability skills through personalized teaching approaches",
-    ],
-    technologies: ["Communication", "Teaching", "Curriculum Development"],
-  },
-]
+import { SectionHeading } from "@/components/section-heading"
+import { portfolioData } from "@/lib/data/portfolio"
 
 export function ExperienceSection() {
+  const { experiences } = portfolioData
+
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-balance">Experience</h2>
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <Card key={index} className="p-6 hover:border-accent transition-colors">
-              <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                  <div>
-                    <h3 className="text-xl font-bold text-balance">{exp.title}</h3>
-                    <p className="text-accent font-medium">{exp.company}</p>
-                    <p className="text-sm text-muted-foreground">{exp.location}</p>
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20">
+      <div className="max-w-6xl mx-auto space-y-12">
+        <SectionHeading
+          eyebrow="Experience"
+          title="Structured delivery across product, design, and AI workflows."
+          description="A concise timeline of roles focused on frontend architecture, AI-enabled features, and quality delivery."
+        />
+        <div className="relative">
+          <div className="absolute left-4 top-0 h-full w-px bg-border/70" aria-hidden="true" />
+          <div className="space-y-8">
+            {experiences.map((exp) => (
+              <div key={`${exp.company}-${exp.role}`} className="relative pl-12">
+                <div className="absolute left-2 top-4 h-4 w-4 rounded-full border border-border bg-background shadow-sm" />
+                <Card className="p-6">
+                  <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-balance">{exp.role}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {exp.company} · {exp.location}
+                      </p>
+                    </div>
+                    <p className="text-sm text-muted-foreground whitespace-nowrap">{exp.period}</p>
                   </div>
-                  <p className="text-sm text-muted-foreground whitespace-nowrap">{exp.period}</p>
-                </div>
-                <ul className="space-y-2">
-                  {exp.description.map((item, i) => (
-                    <li key={i} className="text-muted-foreground text-pretty leading-relaxed flex gap-2">
-                      <span className="text-accent mt-1.5">▹</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {exp.technologies.map((tech) => (
-                    <Badge key={tech} variant="secondary">
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
+                  <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                    {exp.highlights.map((item) => (
+                      <li key={item} className="flex gap-2">
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                        <span className="text-pretty">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {exp.tools.map((tool) => (
+                      <Badge key={tool} variant="secondary">
+                        {tool}
+                      </Badge>
+                    ))}
+                  </div>
+                </Card>
               </div>
-            </Card>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
