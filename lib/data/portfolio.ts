@@ -70,7 +70,7 @@ export const portfolioData: PortfolioData = {
     name: "Gebran Nemes",
     title: "Frontend Developer | Angular, React & Next.js | UI/UX Focused | AI Integration",
     summary:
-      "Results-oriented Frontend Developer and Computer Science graduate with a track record building high-performance, AI-integrated web applications using Next.js, React, and Angular. Experienced across the full software lifecycle, from Figma prototyping to deployment with Supabase and Firebase. Focused on translating complex logic into intuitive, user-centric interfaces that improve modern recruitment and productivity workflows.",
+      "Results-oriented Frontend Developer and Computer Science graduate with a proven track record in building high performance, AI-integrated web applications using Next.js, React, and Angular. Experienced in the full software development lifecycle, from Figma prototyping to deployment with Supabase and Firebase. Passionate about bridging the gap between complex backend logic and intuitive, user-centric interfaces to drive efficiency in modern recruitment and productivity tools.",
     location: "Beirut, Lebanon",
     email: "gebrannemes2003@gmail.com",
     phone: "+96170998429",
@@ -84,16 +84,25 @@ export const portfolioData: PortfolioData = {
   },
   experiences: [
     {
+      role: "Al Front-end Software Development Consultant - Master's Level",
+      company: "Vosyn",
+      location: "Ontario, Canada (Remote)",
+      period: "February 2026 - Present",
+      highlights: [
+      ],
+      tools: ["Next.js", "TypeScript", "Jest", "Figma", "Notion", "Slack", "Github", "Git", "MUI", "UX/UI Design", "AI integration"],
+    },
+    {
       role: "Frontend Web Developer Trainee",
       company: "ITXI",
       location: "Beirut, Lebanon",
       period: "March 2025 - July 2025",
       highlights: [
-        "Architected modern, scalable UI with Angular and TypeScript to improve performance and maintainability.",
-        "Integrated Playwright testing suites and managed development workflows in Jira to maintain quality and transparency.",
-        "Translated Figma designs into functional, production-ready components backed by Firebase.",
+        "Architected modern, scalable UI using Angular and TypeScript to ensure high performance and maintainability.",
+        "Integrated comprehensive testing suites with Playwright and managed development lifecycles via Jira to maintain high code quality and project transparency.",
+        "Designed and translated Figma designs into functional front-end components backed by Firebase.",
       ],
-      tools: ["Angular", "TypeScript", "Playwright", "Jira", "Firebase", "Figma"],
+      tools: ["Angular", "TypeScript", "Playwright", "Jira", "Firebase", "Figma", "Git", "Bitbucket", "UX/UI Design"],
     },
     {
       role: "Full-Stack Developer Intern",
@@ -101,11 +110,11 @@ export const portfolioData: PortfolioData = {
       location: "Remote",
       period: "February 2024 - May 2024",
       highlights: [
-        "Engineered an AI-driven recruitment platform in Next.js to optimize candidate search workflows.",
-        "Implemented core features with TypeScript, Supabase, and Tailwind CSS, prioritizing mobile responsiveness.",
-        "Applied Generative AI tools to deliver intelligent filtering for faster recruiter decision-making.",
+        "Applied analytical problem-solving to engineer an AI-driven recruitment platform using Next.js, significantly optimizing the search process for recruiters.",
+        "Implemented core application features with TypeScript, Supabase, and Tailwind CSS, focusing on mobile responsiveness and backend scalability. ",
+        "Applied Generative AI integration tools to deliver intelligent filtering for faster recruiter decision-making.",
       ],
-      tools: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Generative AI"],
+      tools: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "AI Integration"],
     },
     {
       role: "Private Tutor",
@@ -113,11 +122,11 @@ export const portfolioData: PortfolioData = {
       location: "Beirut, Lebanon",
       period: "September 2014 - September 2025",
       highlights: [
-        "Provided private tutoring to elementary through high school students across multiple subjects.",
+        "Provided private tutoring to students from elementary to high school across multiple subjects.",
         "Built tailored lesson plans to improve individual performance in Arabic, French, and English.",
         "Developed strong communication and adaptability through personalized teaching approaches.",
       ],
-      tools: ["Coaching", "Lesson Planning", "Communication"],
+      tools: ["Tutoring", "Coaching", "Lesson Planning", "Communication"],
     },
   ],
   education: [
@@ -154,16 +163,6 @@ export const portfolioData: PortfolioData = {
       tags: ["Next.js", "AI", "Full Stack"],
     },
     {
-      name: "Motivaily",
-      description: "AI productivity platform with smart challenges and team collaboration.",
-      highlights: [
-        "Designed UX and UI for AI-generated challenges and progress tracking.",
-        "Built responsive pages and contributed to core logic for team features.",
-      ],
-      stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Generative AI"],
-      tags: ["Next.js", "AI", "Productivity"],
-    },
-    {
       name: "Blade-Quest",
       description: "Pixel art game with a responsive interface and persistent player progress.",
       highlights: [
@@ -173,6 +172,16 @@ export const portfolioData: PortfolioData = {
       ],
       stack: ["React.js", "JavaScript", "HTML", "CSS", "MongoDB"],
       tags: ["React", "Game", "Database"],
+    },
+    {
+      name: "Motivaily",
+      description: "AI productivity platform with smart challenges and team collaboration.",
+      highlights: [
+        "Designed UX and UI for AI-generated challenges and progress tracking.",
+        "Built responsive pages and contributed to core logic for team features.",
+      ],
+      stack: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Generative AI"],
+      tags: ["Next.js", "AI", "Productivity"],
     },
     {
       name: "Better Mental State",
@@ -206,7 +215,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       category: "Testing & Tools",
-      skills: ["Playwright", "Jest", "Git", "GitHub", "Jira", "Visual Paradigm"],
+      skills: ["Playwright", "Jest", "Git", "GitHub", "Jira", "Notion", "Postman", "Visual Paradigm"],
     },
     {
       category: "Design & Delivery",
@@ -264,9 +273,19 @@ export const portfolioData: PortfolioData = {
       url: "https://www.coursera.org/account/accomplishments/verify/BB0FY53ZJSP6",
     },
     {
+      title: "Frontend Web Developer",
+      issuer: "micro1",
+      url: "https://micro1-portal-data.s3.amazonaws.com/engineer-certificates/1771501735-07b11fe3-9a1a-433f-8634-f89bcdf644eb.jpg",
+    },
+    {
       title: "Elements of AI for Business",
       issuer: "MinnaLearn",
       url: "https://courses.minnalearn.com/certificate/en/elements-of-ai-for-business/a58989b3-c7ea-42d4-ad47-4d82188115e0",
+    },
+    {
+      title: "Kanz AI Training Hackathon",
+      issuer: "Kanz",
+      url: "https://try.ka.nz/certificate/KANZ-ATT-29B103FB68?certificate_type=participation&recipient_name=Gebran+Nemes&issue_date=July+15%2C+2026&certificate_id=KANZ-ATT-29B103FB68",
     },
   ],
   languages: [
